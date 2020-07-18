@@ -1,5 +1,5 @@
 This is a little DLL for Starbound that, when loaded, will add new functions to every Lua context. 
-(All of them work in singleplayer, multiplayer and with any mod setup)
+(All of them work in singleplayer, multiplayer and with any mod setup. The server or other players don't need this for it to work. In fact, injecting this into a server executable will crash it. And other players will see you change name/species/whatever live aswell.)
 
 **64 bit Starbound only**
 
