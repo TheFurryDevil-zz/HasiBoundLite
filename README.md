@@ -1,35 +1,65 @@
-This is a little DLL for Starbound that, when loaded, will add a new global table called **star** to every Lua context. In that table, in a subtable called **player** are a few functions. (All of them take a string as argument and work in singleplayer, multiplayer and with any mod setup)
+This is a little DLL for Starbound that, when loaded, will add new functions to every Lua context. 
+(All of them work in singleplayer, multiplayer and with any mod setup)
 
 **64 bit Starbound only**
 
 #
 
-**star.player.setName(name)**
+### New in 1.1.0:
 
-Will simply set your characters name to *name* (Not your nickname in chat, but the name above your character). When you disconnect with a different name it will save that new name to the .player file of the character. If you don't want that you can call the function with the original name in a tech **uninit()** for example. Could be used to animate your name...
+**unsafe(string key)**
+
+If you specify "unsafe_key" as a string in your starbound.config, it is not an empty string, and you pass the same value as argument, it will return a table with unsafe functions. Just print the table to see it's structure. This will allow you to keep "safeScripts" enabled without sacrificing it's functions.
+
+**star.chat.focused()**
+
+Returns whether the chat input field has focus.
+
+**star.chat.text()**
+
+Returns the text in the chat input field.
+
+**star.player.aimPosition()**
+
+Returns your aimPosition just like **tech.aimPosition()**, except in any script. Mostly for convenience.
+
+**star.player.setFacialHair(string group, string type, string directives)**
+
+**star.player.setFacialMask(string group, string type, string directives)**
+
+**star.player.setHairType(string group, string type)**
+
+Starbound uses these like **"/humanoid/\<species>/\<group>/\<type>:\<frame>\<directives>"**
+
+**star.player.setGender(number gender)**
+
+0 for male, 1 for female
+
+**star.player.setPersonality(table personality)**
+
+All values must be specified. Example: **{idle = "idle.1", armIdle = "idle.1", armOffset = {0, 0}, headOffset = {0, 0}}**
 
 #
 
-**star.player.addChatMessage(msg)**
+**star.player.setName(string name)**
+
+Will simply set your characters name to *name* (Not your nickname in chat, but the name above your character). When you disconnect with a different name it will save that new name to the .player file of the character. If you don't want that you can call the function with the name that should be saved in a tech **uninit()**, for example.
+
+**star.player.addChatMessage(string msg)**
 
 Will set your characters chatbubble text to *msg*.
-Could be used to talk without sending it to the chat...
 
-#
+**star.player.setSpecies(string species)**
 
-**star.player.setSpecies(species)**
+Will set your characters species, also persistent.
 
-Will set your characters species, also persistent. A bit useless because as of now I didn't add functions to change the hair type and other stuff you can select in the char creation.
+**star.player.setBodyDirectives(string directives)**
 
-#
+**star.player.setEmoteDirectives(string directives)**
 
-**star.player.setBodyDirectives(directives)**
+**star.player.setHairDirectives(string directives)**
 
-**star.player.setEmoteDirectives(directives)**
-
-**star.player.setHairDirectives(directives)**
-
-These change the directives found in the .player file. Could be used to animate your hair or character in general...
+These change the directives also found in the .player file.
 
 ## How to install
 
